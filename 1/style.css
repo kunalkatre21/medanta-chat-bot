@@ -1,0 +1,315 @@
+/**
+ * Medanta Assist - Custom Styles
+ * Minimal custom CSS to complement DaisyUI components
+ */
+
+/* Custom theme colors */
+:root {
+    --primary: #F04E30;
+    --primary-dark: #D84315;
+    --secondary: #6D6E71;
+}
+
+/* Custom animations */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes messageSlide {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Chat container styling */
+.chat-container {
+    animation: slideUp 0.6s ease-out;
+    max-height: 85vh;
+}
+
+/* Custom scrollbar for chat box */
+.chat-box {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) transparent;
+}
+
+.chat-box::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-box::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 3px;
+}
+
+.chat-box::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* Avatar styling - using DaisyUI classes */
+
+/* Time styling - now handled by DaisyUI chat-header */
+
+/* Responsive design */
+@media (max-width: 640px) {
+    .chat-container {
+        height: 100vh;
+        max-width: 100%;
+        border-radius: 0;
+    }
+    
+    .chat-box {
+        max-height: calc(100vh - 180px);
+    }
+    
+    .chat-header {
+        padding: 1rem;
+    }
+    
+    .chat-header h1 {
+        font-size: 1.25rem;
+    }
+    
+    .chat-input {
+        padding: 1rem;
+    }
+}
+
+/* Loading animation override */
+.loading.loading-spinner {
+    color: var(--primary);
+}
+
+/* Badge styling */
+.badge {
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+/* Button hover effects */
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(240, 78, 48, 0.3);
+}
+
+/* Time slot hover effects */
+.time-slot:hover {
+    transform: translateY(-1px);
+}
+
+/* Form styling */
+.form-control {
+    margin-bottom: 1rem;
+}
+
+/* Checkbox styling - display options one below another */
+.form-control .label {
+    display: block;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+.form-control .label:last-child {
+    margin-bottom: 0;
+}
+
+.form-control .checkbox {
+    margin-right: 0.5rem;
+}
+
+/* Card styling */
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Chat bubble styling */
+.chat-bubble {
+    max-width: 75%;
+    word-wrap: break-word;
+}
+
+.chat-end .chat-bubble {
+    max-width: 70%;
+}
+
+/* Full width chat bubble for appointment confirmation */
+.chat-start .chat-bubble.appointment-confirmation {
+    max-width: 100%;
+    width: 100%;
+}
+
+/* Appointment details card styling within chat bubble */
+.chat-bubble .appointment-details {
+    width: 100%;
+    margin: 0;
+}
+
+/* Input focus effects */
+.input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(240, 78, 48, 0.1);
+}
+
+/* Notification styling */
+.alert {
+    animation: messageSlide 0.3s ease-out;
+}
+
+/* Utility classes */
+.text-gradient {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.border-gradient {
+    border: 2px solid;
+    border-image: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%) 1;
+}
+
+/* Print styles */
+@media print {
+    .chat-container {
+        box-shadow: none;
+        border: 1px solid #e5e7eb;
+    }
+    
+    .chat-input {
+        display: none;
+    }
+    
+    .chat-header {
+        background: white !important;
+        color: black !important;
+        border-bottom: 2px solid var(--primary);
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .chat-container {
+        border: 2px solid black;
+    }
+    
+    .chat-bubble {
+        border: 1px solid black;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary: #ff6b35;
+        --primary-dark: #e55100;
+    }
+}
+
+/* Custom utilities */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Focus visible for better keyboard navigation */
+.btn:focus-visible,
+.input:focus-visible,
+.time-slot:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* Selection styling */
+::selection {
+    background-color: var(--primary);
+    color: white;
+}
+
+/* Custom transitions */
+.transition-all {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+/* Powered by eka.care styling */
+.powered-by-container {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.powered-by-container:hover {
+    opacity: 1;
+}
+
+.powered-by-image {
+    height: 24px;
+    width: auto;
+    filter: brightness(0) invert(0.3);
+    transition: filter 0.3s ease;
+}
+
+.powered-by-container:hover .powered-by-image {
+    filter: brightness(0) invert(0.5);
+}
+
+/* Responsive adjustments for powered by section */
+@media (max-width: 640px) {
+    .powered-by-container {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .powered-by-image {
+        height: 20px;
+        max-width: 120px;
+    }
+}
+
+/* Dark mode adjustments for powered by image */
+@media (prefers-color-scheme: dark) {
+    .powered-by-image {
+        filter: brightness(0) invert(0.7);
+    }
+    
+    .powered-by-container:hover .powered-by-image {
+        filter: brightness(0) invert(0.9);
+    }
+}
